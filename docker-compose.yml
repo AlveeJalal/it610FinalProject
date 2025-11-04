@@ -1,0 +1,9 @@
+services:
+  wazuh-indexer:
+    image:
+  wazuh-server:
+    image:
+  wazuh-dashboard:
+    image:
+  wazuh-agent:
+    image:
