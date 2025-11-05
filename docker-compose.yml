@@ -1,9 +1,11 @@
 services:
   wazuh-indexer:
-    image:
+    image: wazuh/wazuh-indexer:latest
+    ports:
+      - "9200:9200"
   wazuh-server:
-    image:
+    image: wazuh/wazuh-manager
   wazuh-dashboard:
-    image:
+    image: wazuh/wazuh-dashboard
   wazuh-agent:
     image:
