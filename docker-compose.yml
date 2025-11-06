@@ -3,9 +3,23 @@ services:
     image: wazuh/wazuh-indexer:latest
     ports:
       - "9200:9200"
+      - "9400:9400"
+    #environment:
+    restart: always
   wazuh-server:
     image: wazuh/wazuh-manager
+    ports:
+      - "1514:1514"
+      - "1515:1515"
+      - "514:514"
+      - "55000:55000"
+    #environment:
+    restart: always
   wazuh-dashboard:
     image: wazuh/wazuh-dashboard
+    ports:
+      - "443:443"
+    #environment:
+    restart: always
   wazuh-agent:
     image:
