@@ -1,0 +1,3 @@
+* * * * *  /usr/bin/python3  /lastKeepAliveGet.py >> /app/logs/lastKeepAlive.log 2>&1
+# */1 * * * *  python3 /home/alvee/it610/it610FinalProject/logs/lastKeepAliveGet.py >> /tmp/test.log 2>&1
+
