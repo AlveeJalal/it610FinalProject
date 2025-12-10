@@ -1,4 +1,4 @@
-# it610midtermProject
+# it610FinalProject
 
 ## Introduction
 This project is meant to install, configure, and run an instance of the Wazuh SIEM (Security Information and Event Management) software. The Wazuh SIEM is a tool used to monitor activity on systems to ultimately assist with cyber security efforts(Incident response, prevention, recovery, etc). The midterm intention was to run Wazuh SIEM on a single container. However it was ultimately discovered that Wazuh cannot run this way due to its multi-service architecture requiring multiple containers. It was then run on the host as per Professor's directions. This FINAL project however separates the Wazuh components into multiple containers on the same network using docker-compose for better load balancing and separation of concerns. This documentation explains the process, background, and other "need to know" information on running a mult-container pre-packaged Wazuh SIEM project on any device using docker-compose.
@@ -33,11 +33,11 @@ API_JWT = jwt
 ```
 
 ### Initialization and Execution
-Have a project directory where you will pull and run the software. Become root and pull the image from the DockerHub repository. The container successfully running means the software was successfully pulled and started
+Have a project directory where you will clone and run the software. Become root and clone the repository from GitHub into your local machine, setup necessary variables and ports, and run the services using docker-compose.  The container successfully running means the software was successfully pulled and started
 ```
     su -
-    docker pull alveejalal/wazuhimage:latest 
-    docker run -d --name <Custom Container Name> -p 5601:5601 -p 55000:55000 -p 1514:1514 -p 9200:9200  wazuhimage
+    git clone git@github.com:AlveeJalal/it610FinalProject.git
+    docker-compose up -d
 ```
 You can also go into the bash shell:
 ```     docker exec -it <Custom Container Name> bash ```
