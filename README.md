@@ -39,18 +39,25 @@ Have a project directory where you will clone and run the software. Become root 
     git clone git@github.com:AlveeJalal/it610FinalProject.git
     docker-compose up -d
 ```
-You can also go into the bash shell:
+You can also go into the bash shell to use the container environment:
 ```     docker exec -it <Custom Container Name> bash ```
 
-Become root and change directory (CD) into the /wazuhFiles directory to access the installation scripts
-``` su -
-    cd wazuhFiles
+Ensure to give yourself ownership & permissions to read/write/execute to the entire project recursively including current and subdirectories
+``` chown -R alvee .
+    chmod 744 . 
 ```
-Open the indexer_starter.sh file and set INDEXER_IP, SERVER_IP, DASHBOARD_IP to your host IP. 
+Become root and Change directory (CD) into the ```/it610FinalProject/config```  directory to access the config files for the Indexer & Dashboard in the ```wazuh_dashboard``` & ```wazuh_indexer``` subdirectories to ensure network.host(can be 0.0.0.0), node.name, cluster.name, are correct 
+to your liking
+Example configuration for wazuh.indexer.yml. Feel free to copy:
 ```
-    INDEXER_IP="<YOUR_IP>"
-    SERVER_IP="<YOUR_IP>"
-    DASHBOARD_IP="<YOUR_IP>"
+network.host: "0.0.0.0"
+node.name: "wazuh.indexer"
+cluster.name: "wazuh-cluster"
+path.data: /var/lib/wazuh-indexer
+path.logs: /var/log/wazuh-indexer
+discovery.type: single-node
+http.port: 9200-9299
+transport.tcp.port: 9300-9399
 ```
 
 Access Wazuh on your browser using your set IP(Can be Host, VM, or Localhost IP) and port number(typically 443) for the dashboard  with the URL: ``` https://<Your_IP>:port ```
