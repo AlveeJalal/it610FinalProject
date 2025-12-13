@@ -66,34 +66,6 @@ Dashboard should look like the above
 
 ## Running on Host OS
 ### Environment Setup
-Have a project directory where you will pull and run the software. (Ex: "WazuhProject")
-``` git clone git@github.com:AlveeJalal/it610midtermProject.git ```
-
-### Environment Setup & Initiation
-Always ensure your environment is up to date with the latest software to minimize interruption during Wazuh setup
-```
-    sudo apt-get update
-    sudo apt-get upgrade
-```
-Become root and change directory (CD) into the /wazuhFiles directory to access the installation scripts
-``` su -
-    cd wazuhFiles
-```
-Open the indexer_starter.sh file and set INDEXER_IP, SERVER_IP, DASHBOARD_IP to your host IP. 
-```
-    INDEXER_IP="<YOUR_IP>"
-    SERVER_IP="<YOUR_IP>"
-    DASHBOARD_IP="<YOUR_IP>"
-```
-Run the installation scripts in the FOLLOWING ORDER: index_starter.sh->server_starter.sh->dashboard_starter.sh 
-```
-    ./index_starter.sh
-    ./server_starter.sh
-    ./dashboard_starter.sh
-```
-Access Wazuh on your browser using your set IP(Can be Host, VM, or Localhost IP) and port number(typically 443) for the dashboard  with the URL: ``` https://<Your_IP>:port ```
-<img width="1918" height="1198" alt="wazuh_dashboard_startup" src="https://github.com/user-attachments/assets/f635b5d7-d535-4a6e-b01c-23ff13c3df3b" />
-Dashboard should look like the above
 ### Keeping Services Persistent
 
 If using WSL2, create a script and have it run on startup. Make sure it is executable
@@ -120,11 +92,10 @@ systemctl start wazuh-dashboard
 
 
 ### Precautions
-* Ensure all scripts are run in the EXACT ORDER mentioned (index_starter.sh->server_starter.sh->dashboard_starter.sh) and let each script finish before starting the next
 * Ensure the ENTIRE installment is done on ONE terminal/session/tab. 
-* Ensure firewall rules are NOT blocking ports 443, 5601, 55000, 9200, 1514/1515, 514
+* Ensure the following ports are not being used or blocked by firewall rules: 443, 5601, 55000, 9200, 1514/1515, 514
 * Ensure the `wazuh-certificates.tar` file is present with the installer files - this is needed to assign and verify certificated for security
-
+* Ensure credentials and config files are updated accordingly
 ## Component/features Breakdown
 
 ### indexer_starter.sh,  server_starter.sh,  dashboard_starter.sh 
