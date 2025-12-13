@@ -98,18 +98,20 @@ systemctl start wazuh-dashboard
 * Ensure credentials and config files are updated accordingly
 ## Component/features Breakdown
 
-###wazuh-indexer 
+### wazuh-indexer 
 * The Wazuh Indexer stores log and other security data aggregated from the user system and Wazuh API in JSON format.
 * The Indexer is on the same wazuh_network as the other components and interacts with them to pass around, display, update, or delete  data
-* A
- 
+* The wazuh-manager forwards vulnerability data to the indexer using a [Filebeat](https://documentation.wazuh.com/current/user-manual/manager/indexer-integration.html#filebeat)  and [Wazuh indexer connector](https://documentation.wazuh.com/current/user-manual/manager/indexer-integration.html#wazuh-indexer-connector)
 ### config.yml
-This file gets created after running the Wazuh Installer from the installation scripts. This file configures the node IP addresses for all the devices running each service (Indexer, Manager, Dashboard, etc). 
+* This file gets created after running the Wazuh Installer from the installation scripts.
+*  This file configures the node IP addresses for all the devices running each service (Indexer, Manager, Dashboard, etc). 
 
 ### wazuh-certificates.tar
-This .tar directory contains necessary certificates and secrets used to securely verify the authenticity and provide trust between all components in this project. Make sure this is in the main project directory or anywhere services are run so the system can authenticate properly. 
+* This .tar directory contains necessary certificates and secrets used to securely verify the authenticity and provide trust between all components in this project.
+*  Make sure this is in the main project directory or anywhere services are run so the system can authenticate properly. 
 
 ### entrypoint.sh
-Install and start services manually by the binary files after checking for their existence  rather than systemd (for cases where systemd isn't working or isn't available). Wazuh by default runs using systemctl which relies on systemd in Linux. 
+* Install and start services manually by the binary files after checking for their existence  rather than systemd (for cases where systemd isn't working or isn't available).
+*  Wazuh by default runs using systemctl which relies on systemd in Linux. 
 
 
