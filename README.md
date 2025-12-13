@@ -98,9 +98,11 @@ systemctl start wazuh-dashboard
 * Ensure credentials and config files are updated accordingly
 ## Component/features Breakdown
 
-### indexer_starter.sh,  server_starter.sh,  dashboard_starter.sh 
-Scripts to install, setup & run the Wazuh Indexer, manager & dashboard Generates config files, creates and sets a node, & initialized cluster security/certification script. Overwrites existing installations.
-
+###wazuh-indexer 
+* The Wazuh Indexer stores log and other security data aggregated from the user system and Wazuh API in JSON format.
+* The Indexer is on the same wazuh_network as the other components and interacts with them to pass around, display, update, or delete  data
+* A
+ 
 ### config.yml
 This file gets created after running the Wazuh Installer from the installation scripts. This file configures the node IP addresses for all the devices running each service (Indexer, Manager, Dashboard, etc). 
 
