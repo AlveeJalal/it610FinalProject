@@ -102,6 +102,41 @@ systemctl start wazuh-dashboard
 * The Wazuh Indexer stores log and other security data aggregated from the user system and Wazuh API in JSON format.
 * The Indexer is on the same wazuh_network as the other components and interacts with them to pass around, display, update, or delete  data
 * The wazuh-manager forwards vulnerability data to the indexer using a [Filebeat](https://documentation.wazuh.com/current/user-manual/manager/indexer-integration.html#filebeat)  and [Wazuh indexer connector](https://documentation.wazuh.com/current/user-manual/manager/indexer-integration.html#wazuh-indexer-connector)
+* Test indexer installation with the command ```curl -k -u admin https://<WAZUH_INDEXER_IP_ADDRESS>:9200```
+### wazuh-manager
+* The Wazuh Manager handles various responsibilites and actions central to the SIEM's performance such as forwarding data logs, rule management, alerting, and more and is closely connected to the Wazuh Indexer
+* Check wazuh-manager configuration by viewing and editing the file at ```/var/ossec/etc/ossec.conf``` 
+* Sample excerpts from Wazuh-Manager configs: 
+```  <remote>
+    <connection>secure</connection>
+    <port>1514</port>
+    <protocol>tcp</protocol>
+    <queue_size>131072</queue_size>
+  </remote>
+```
+Setting Wazuh-Manager port and queue size
+
+```
+<cluster>
+    <name>wazuh</name>
+    <node_name>node01</node_name>
+    <node_type>master</node_type>
+    <key>aa093264ef885029653eea20dfcf51ae</key>
+    <port>1516</port>
+    <bind_addr>0.0.0.0</bind_addr>
+    <nodes>
+        <node>wazuh.manager</node>
+    </nodes>
+    <hidden>no</hidden>
+    <disabled>yes</disabled>
+  </cluster>
+```
+Setting Wazuh-Manager cluster bind addresses, node information, and more. 
+### wazuh-dashboard
+
+### wazuh-agent
+
+
 ### config.yml
 * This file gets created after running the Wazuh Installer from the installation scripts.
 *  This file configures the node IP addresses for all the devices running each service (Indexer, Manager, Dashboard, etc). 
