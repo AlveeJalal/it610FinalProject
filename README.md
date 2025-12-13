@@ -107,7 +107,8 @@ systemctl start wazuh-dashboard
 * The Wazuh Manager handles various responsibilites and actions central to the SIEM's performance such as forwarding data logs, rule management, alerting, and more and is closely connected to the Wazuh Indexer
 * Check wazuh-manager configuration by viewing and editing the file at ```/var/ossec/etc/ossec.conf``` 
 * Sample excerpts from Wazuh-Manager configs: 
-```  <remote>
+``` 
+   <remote>
     <connection>secure</connection>
     <port>1514</port>
     <protocol>tcp</protocol>
@@ -133,9 +134,10 @@ Setting Wazuh-Manager port and queue size
 ```
 Setting Wazuh-Manager cluster bind addresses, node information, and more. 
 ### wazuh-dashboard
+* The wazuh-dashboard
 
 ### wazuh-agent
-
+* The wazuh-agent 
 
 ### config.yml
 * This file gets created after running the Wazuh Installer from the installation scripts.
@@ -149,4 +151,4 @@ Setting Wazuh-Manager cluster bind addresses, node information, and more.
 * Install and start services manually by the binary files after checking for their existence  rather than systemd (for cases where systemd isn't working or isn't available).
 *  Wazuh by default runs using systemctl which relies on systemd in Linux. 
 
-
+## Project Difficulties/Pain Points
