@@ -158,8 +158,33 @@ opensearch_security.session.keepalive: true
 ```
 Sample Wazuh Dashboard configuration
 ### wazuh-agent
-* The wazuh-agent 
+* The wazuh-agent(s) are programs that are attached to host devices that primarily report vulnerability data the the Wazuh indexers and utlimately the dashboard and managers. 
+* The wazuh-agent(s) can be enrolled either manually via [Wazuh server API](https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/enrollment-methods/via-manager-API/index.html) or [automatically by agent configuration](https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/enrollment-methods/via-agent-configuration/index.html).  
+* Can check agent status via Dashboard UI or API call ``` GET /agents/<WAZUH_AGENT_ID>/stats/agent ```. Can also check via running log scripts in ```/it610FinalProject/logs/getAgentComponentStats.py```
 
+```  
+{
+ "data": {
+        "affected_items": [
+            {
+                "buffer_enabled": true,
+                "last_ack": "2025-12-05T04:17:31Z",
+                "last_keepalive": "2025-12-05T04:17:29Z",
+                "msg_buffer": 0,
+                "msg_count": 0,
+                "msg_sent": 128,
+                "status": "connected"
+            }
+        ],
+        "failed_items": [],
+        "total_affected_items": 1,
+        "total_failed_items": 0
+    },
+    "error": 0,
+    "message": "Statistical information for each agent was successfully read"
+}
+```
+Sample output showing Wazuh Agent status (found and online)
 ### config.yml
 * This file gets created after running the Wazuh Installer from the installation scripts.
 *  This file configures the node IP addresses for all the devices running each service (Indexer, Manager, Dashboard, etc). 
