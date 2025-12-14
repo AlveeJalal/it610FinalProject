@@ -134,8 +134,29 @@ Setting Wazuh-Manager port and queue size
 ```
 Setting Wazuh-Manager cluster bind addresses, node information, and more. 
 ### wazuh-dashboard
-* The wazuh-dashboard
-
+* The wazuh-dashboard is a user interface webpage that shows a more user-friendly visual representation of all things Wazuh, such as vulnerability data, agents running, access to tools and more
+* The wazuh-dashboard aggregates data from the Wazuh Indexer, Wazuh Manager, and Wazuh Agents to create a full-fledges GUI for managing the platform 
+* Access dashboard UI by typing in the URL on an browser ```https://<Your_IP>:port```. 
+* You can check wazuh-dashboard configuration in ```/it610FinalProject/config/wazuh_dashboard/opensearch_dashboards.yml```
+``` 
+server.host: 0.0.0.0
+server.port: 5601
+opensearch.hosts: https://wazuh.indexer:9200
+opensearch.ssl.verificationMode: certificate
+opensearch.requestHeadersAllowlist: ["securitytenant","Authorization"]
+opensearch_security.multitenancy.enabled: false
+opensearch_security.readonly_mode.roles: ["kibana_read_only"]
+server.ssl.enabled: true
+server.ssl.key: "/usr/share/wazuh-dashboard/certs/wazuh-dashboard-key.pem"
+server.ssl.certificate: "/usr/share/wazuh-dashboard/certs/wazuh-dashboard.pem"
+opensearch.ssl.certificateAuthorities: ["/usr/share/wazuh-dashboard/certs/root-ca.pem"]
+uiSettings.overrides.defaultRoute: /app/wz-home
+# Session expiration settings
+opensearch_security.cookie.ttl: 900000
+opensearch_security.session.ttl: 900000
+opensearch_security.session.keepalive: true
+```
+Sample Wazuh Dashboard configuration
 ### wazuh-agent
 * The wazuh-agent 
 
