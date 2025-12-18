@@ -203,4 +203,6 @@ needing SystemD to run which is absent in containers
 ### Excessive Load & Complexity on Single Container
 * The project consists of multiple services (Dashboard, Indexer, Manager, Agent, etc) which cannot run on ONE container due to load issues
 * Manual installations constantly ran into missing dependency and networking issues that were resolved in the official images and assisted installation
+### Miscellaneous/Other Issues
+* Alert indexing was not being sent to Dashboard UI either due to filebeat errors or some other error
 
