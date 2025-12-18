@@ -64,8 +64,6 @@ Access Wazuh on your browser using your set IP(Can be Host, VM, or Localhost IP)
 <img width="1918" height="1198" alt="wazuh_dashboard_startup" src="https://github.com/user-attachments/assets/f635b5d7-d535-4a6e-b01c-23ff13c3df3b" />
 Dashboard should look like the above
 
-## Running on Host OS
-### Environment Setup
 ### Keeping Services Persistent
 
 If using WSL2, create a script and have it run on startup. Make sure it is executable
@@ -198,3 +196,8 @@ Sample output showing Wazuh Agent status (found and online)
 *  Wazuh by default runs using systemctl which relies on systemd in Linux. 
 
 ## Project Difficulties/Pain Points
+
+### SystemD Running on Manual Single-Container 
+* In the midterm I tried runnign Wazuh manually using install scripts and that ended up failing due to Wazuh's manual installation 
+needing SystemD to run which is absent in containers
+* The project consists of multiple services (Dashboard, Indexer, Manager, Agent, etc) which cannot run on ONE container due to load issues
