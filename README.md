@@ -205,4 +205,5 @@ needing SystemD to run which is absent in containers
 * Manual installations constantly ran into missing dependency and networking issues that were resolved in the official images and assisted installation
 ### Miscellaneous/Other Issues
 * Alert indexing was not being sent to Dashboard UI either due to filebeat errors or some other error
+* Often filepaths & names on system did not match what was on (old) documentation online, causing execution struggles
 
