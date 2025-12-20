@@ -9,13 +9,14 @@ import os
 import requests  
 import urllib3
 
-load_dotenv()
 
+load_dotenv('/app/.env_file')
 #Configuration
-endpoint = '/agents/002/stats/agent'
+endpoint = '/agents/006/stats/agent'
 
 protocol = 'https'
-host = '172.23.128.164'
+#host = '172.23.128.164'
+host = 'wazuh.manager'
 port = '55000'
 user = os.environ.get('API_USERNAME')
 password = os.environ.get('API_PASSWORD')
@@ -29,8 +30,7 @@ def get_response(request_method, url, headers, verify=False, body=None):
     if body is None:
         body = {}
 
-    request_result = getattr(requests, request_method.lower())(url, headers=headers, verify=verify, data=body)
-
+    request_result = getattr(requests, request_method.lower())(url, headers=headers, verify=verify, data=body, timeout=10)
     if request_result.status_code == 200:
         return json.loads(request_result.content.decode())
     else:

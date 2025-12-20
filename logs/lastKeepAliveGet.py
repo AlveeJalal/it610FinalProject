@@ -7,7 +7,7 @@ import requests
 import urllib3
 from datetime import datetime
 
-load_dotenv('/app/.env')
+load_dotenv('/app/.env_file')
 
 #Configuration
 #endpoint = '/agents?select=lastKeepAlive&select=id&status=disconnected'
@@ -20,7 +20,9 @@ host = 'wazuh.manager'
 port = '55000'
 user = os.environ.get('API_USERNAME')
 password = os.environ.get('API_PASSWORD')
-
+print(f"DEBUG: user='{user}'")
+print(f"DEBUG: password='{password}'")
+print(f"DEBUG: password length={len(password) if password else 0}")
 #Disable insecure https warnings (for self-signed SSL certificates)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 

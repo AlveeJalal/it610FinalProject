@@ -1,14 +1,23 @@
+#!/usr/bin/env python3
 import requests
 import json
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv('/app/.env_file')
 
 # Base URL and endpoint
-indexer_url = "https://localhost:9200"
+indexer_url = "https://wazuh.indexer:9200"  # Changed from localhost
 endpoint = "/wazuh-alerts*/_search"
 url = indexer_url + endpoint
 
+# Use Basic Auth with indexer credentials
+username = os.environ.get('INDEXER_USERNAME')
+password = os.environ.get('INDEXER_PASSWORD')
+
 headers = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer <WAZUH_INDEXER_JWT>"
+    "Content-Type": "application/json"
 }
 
 # Query payload
@@ -37,14 +46,20 @@ requests.packages.urllib3.disable_warnings()
 
 # Execute the API request
 try:
-    response = requests.post(url, headers=headers, data=json.dumps(payload), verify=False)
-    response.raise_for_status()  # Raise an exception for HTTP errors
-    result = response.json()  # Parse the JSON response
-
+    response = requests.post(
+        url, 
+        headers=headers, 
+        auth=(username, password),  # Add Basic Auth
+        data=json.dumps(payload), 
+        verify=False
+    )
+    response.raise_for_status()
+    result = response.json()
+    
     # Process and display the results
     print("Top three (3) Users with Most Successful Login Sessions:")
-    if "aggregations" in result and "successful_logins_by_users" in result["aggregations"]:
-        buckets = result["aggregations"]["successful_logins_by_users"]["buckets"]
+    if "aggregations" in result and "successful_logins_by_user" in result["aggregations"]:
+        buckets = result["aggregations"]["successful_logins_by_user"]["buckets"]
         if buckets:
             for user in buckets:
                 print(f"User: {user['key']}, Count: {user['doc_count']}")
