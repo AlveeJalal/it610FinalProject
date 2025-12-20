@@ -64,29 +64,6 @@ Access Wazuh on your browser using your set IP(Can be Host, VM, or Localhost IP)
 <img width="1918" height="1198" alt="wazuh_dashboard_startup" src="https://github.com/user-attachments/assets/f635b5d7-d535-4a6e-b01c-23ff13c3df3b" />
 Dashboard should look like the above
 
-### Keeping Services Persistent
-
-If using WSL2, create a script and have it run on startup. Make sure it is executable
-```
-sudo vi /etc/wsl.conf
-```
-Add this line ``` command="bash /usr/local/bin/wazuh-startup.sh" ```
-
-Create the script
-``` sudo nano /usr/local/bin/wazuh-startup.sh ```
-The script will run the services on startup
-```
-#!/bin/bash
-# Wait a few seconds for networking to stabilize
-sleep 5
-
-# Start all Wazuh services
-systemctl start wazuh-indexer
-systemctl start wazuh-manager
-systemctl start wazuh-dashboard
-
-```
-
 
 
 ### Precautions

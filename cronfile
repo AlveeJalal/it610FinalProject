@@ -1,3 +1,5 @@
 * * * * *  /usr/bin/python3  /lastKeepAliveGet.py >> /app/logs/lastKeepAlive.log 2>&1
+#* * * * *  /usr/bin/python3  /getAgentComponentStats.py >> /app/logs/agentComponentStats.log 2>&1
+* * * * * export $(cat /app/.env_file | grep -v '^#' | xargs) && /usr/bin/python3 /getAgentComponentStats.py >> /app/logs/agentComponentStats.log 2>&1
 # */1 * * * *  python3 /home/alvee/it610/it610FinalProject/logs/lastKeepAliveGet.py >> /tmp/test.log 2>&1
 

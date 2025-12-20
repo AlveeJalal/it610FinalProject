@@ -111,10 +111,12 @@ services:
     container_name: cron-container
     volumes:
       - ./logs:/app/logs 
-      - ./env/.env:/app/.env
+      - ./env/.env_file:/app/.env_file
     environment:
       - API_USERNAME=${API_USERNAME}
       - API_PASSWORD=${API_PASSWORD}
+    env_file:
+    - ./env/.env_file
     networks:
       - wazuh_network    
     restart: unless-stopped
